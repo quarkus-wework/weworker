@@ -1,50 +1,18 @@
-# quarkus-gateway project
+# 企微开放接口以及企微官方后台API实现
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
+集成了企微开放平台api，提供对应功能，方便企业通过自建应用管理企业/客户；另外企微管理员可以在此项目下通过手机端企微扫描二维码将企微官方后台的功能api化，能够更进一步满足企微管理的需求。
 
-If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
-
-## Running the application in dev mode
-
-You can run your application in dev mode that enables live coding using:
+## 开发方式
+需要准备好mysql，clone此项目，执行命令：
 ```shell script
-./mvnw compile quarkus:dev
+mvn compile quarkus:dev 
 ```
-
-## Packaging and running the application
-
-The application can be packaged using:
+## 打包
 ```shell script
-./mvnw package
+# 普通打包
+mvn package -Dquarkus.package.type=uber-jar
+# 打包成原生文件（需要graalVM）
+mvn package -Pnative
+# 打包成原生镜像
+mvn package -Pnative -Dquarkus.native.container-build=true
 ```
-It produces the `quarkus-gateway-1.0.0-SNAPSHOT-runner.jar` file in the `/target` directory.
-Be aware that it’s not an _über-jar_ as the dependencies are copied into the `target/lib` directory.
-
-If you want to build an _über-jar_, execute the following command:
-```shell script
-./mvnw package -Dquarkus.package.type=uber-jar
-```
-
-The application is now runnable using `java -jar target/quarkus-gateway-1.0.0-SNAPSHOT-runner.jar`.
-
-## Creating a native executable
-
-You can create a native executable using: 
-```shell script
-./mvnw package -Pnative
-```
-
-Or, if you don't have GraalVM installed, you can run the native executable build in a container using: 
-```shell script
-./mvnw package -Pnative -Dquarkus.native.container-build=true
-```
-
-You can then execute your native executable with: `./target/quarkus-gateway-1.0.0-SNAPSHOT-runner`
-
-If you want to learn more about building native executables, please consult https://quarkus.io/guides/maven-tooling.html.
-
-# RESTEasy JAX-RS
-
-<p>A Hello World RESTEasy resource</p>
-
-Guide: https://quarkus.io/guides/rest-json
